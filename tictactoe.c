@@ -17,9 +17,15 @@ char const USER='X';
 void main(){
 board [3][3]=' ';
 //need to reset the board first before starting a game......>
+char winner =' ';
 resetBoard();
+// print the board until none is winner and freeSpaces != 0
+while (winner==' ' && checkFreeSpaces()!=0)
+{
+   
 printBoard();//print the board
 
+}
 }
 
 // adding reset functionalities to resetBoard()
@@ -50,4 +56,23 @@ printf("\n---|---|---\n");
 
 printf("  %c | %c  | %c ", board[2][0],board[2][1], board[2][2]);
    printf("\n");
+}
+
+// check free spaces 
+int checkFreeSpaces(){ //int as need to return the amount of free spaces
+int freeSpaces= 9;//initially 3 rows and 3 col = 9 free spaces
+for (int i = 1; i <= 3; i++) // 3 rows
+{
+   for (int j = 1; j <= 3; j++) //3 cols
+   {
+      if (board[i][j]!=' ') //reduce no of free spaces if board[i][j] have any value
+      {
+         freeSpaces--;
+      }
+      
+   }
+   
+}
+
+return freeSpaces;
 }
