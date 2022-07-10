@@ -5,7 +5,7 @@ void resetBoard();
 void printBoard();
 int checkFreeSpaces(); // need to return how much spaces are free
 void movePlayer();
-void computerMove();
+void moveComputer();
 char checkWinner();
 void printWinner(char);
 
@@ -102,6 +102,26 @@ else{
 }
 }
 while (board[row][col]!=' ');
+}
+
+void moveComputer(){
+   // create a seed based on the current time
+   
+   srand(time(0));
+   int row, col;
+   if (checkFreeSpaces()>0)
+   {
+      do
+      {
+         row= rand()%3;// get a random row
+         col=rand()%3; //get a random col
+      } while (board[row][col]!= ' ');
+      board[row][col] = COMPUTER;
+   }
+   else{// no spaces avilable
+printWinner(' ');// prints space if no winner
+   }
+   
 }
 
 char checkWinner(){ 
