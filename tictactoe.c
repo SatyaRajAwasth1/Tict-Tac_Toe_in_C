@@ -4,7 +4,7 @@
 void resetBoard();
 void printBoard();
 int checkFreeSpaces(); // need to return how much spaces are free
-void playerMove();
+void movePlayer();
 void computerMove();
 char checkWinner();
 void printWinner(char);
@@ -24,6 +24,7 @@ while (winner==' ' && checkFreeSpaces()!=0)
 {
    
 printBoard();//print the board
+movePlayer(); //moving player on the turn of player
 
 }
 }
@@ -69,10 +70,30 @@ for (int i = 1; i <= 3; i++) // 3 rows
       {
          freeSpaces--;
       }
-      
-   }
-   
+   } 
 }
-
 return freeSpaces;
+}
+// move player
+void movePlayer(){
+int row, col;
+do{//need to do once either condition false or true
+   //ask player whether he/she want to move row and col
+printf("Eneter the row {1 to 3} you want to move: ");
+scanf("%d",&row);
+row--; // as a row of that col is reduced
+
+printf("\n Eneter the column {1 to 3} you want to move of row %d: ", row);
+scanf("%d",&col);
+col--; //that col of that row is reduced
+
+if (board[row][col]==' ')
+{
+   board[row][col]=USER;
+}
+else{
+   printf("sorry, move cant be done, place already filled try next \n"); //place already filled
+}
+}
+while (board[row][col]!=' ');
 }
