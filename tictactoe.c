@@ -26,7 +26,13 @@ while (winner==' ' && checkFreeSpaces()!=0)
 printBoard();//print the board
 movePlayer(); //moving player on the turn of player
 
+winner = checkWinner();//either X or 0 or space will come
+if (winner!=' ' && checkFreeSpaces!=0)
+{
+   break;
 }
+}
+
 }
 
 // adding reset functionalities to resetBoard()
@@ -96,4 +102,31 @@ else{
 }
 }
 while (board[row][col]!=' ');
+}
+
+char checkWinner(){ 
+   /*
+   check whether the elements of rows and col are equal of X or 0
+   if all elements of rows or columns or diagonal are X then USER wins else if 0 COMPUTER wins else none will win
+   */
+  for (int row = 0; row < 3; row++)//check for row
+  {
+   if (board[row][0]==board[row][1] && board[row][0]==board[row][2]){
+      return board[row][0];// that will return either X or 0
+   }
+  }
+  for (int col = 0; col < 3; col++){// check on column
+   if (board[0][col]==board[1][col] && board[0][col]==board[2][col]){
+      return board[0][col];// that will print the element on the column 0 of row 0
+   }
+  }
+   //for diagonals---> where value of row and colum is equal >> principal diagonal
+ if (board[0][0]==board[1][1] && board[0][0]==board[2][2]){
+      return board[0][0];// that will print the element on the column 0 of row 0
+   }
+   // for side diagonal where row+col = even on 3X3 
+    if (board[0][2]==board[1][1] && board[0][2]==board[2][0]){
+      return board[0][2];// that will print the element on the column 2 of row 0
+   }
+return ' ';// return space if none matches means for empty ones
 }
